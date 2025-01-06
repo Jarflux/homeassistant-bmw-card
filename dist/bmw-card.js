@@ -1,5 +1,4 @@
-var $de53a9e075e12450$exports = {};
-class $de53a9e075e12450$var$BmwCard extends HTMLElement {
+class $de53a9e075e12450$export$4bea8ebf3f6f8075 extends HTMLElement {
     // Whenever the state changes, a new `hass` object is set. Use this to
     // update your content.
     set hass(hass) {
@@ -42,8 +41,7 @@ class $de53a9e075e12450$var$BmwCard extends HTMLElement {
 }
 
 
-var $62ce92ffd2eddd19$exports = {};
-class $62ce92ffd2eddd19$var$BmwCardEditor extends LitElement {
+class $62ce92ffd2eddd19$export$b4a0c96d79c32b81 extends LitElement {
     setConfig(config) {
         this._config = config;
     }
@@ -60,8 +58,8 @@ class $62ce92ffd2eddd19$var$BmwCardEditor extends LitElement {
 }
 
 
-customElements.define("bwm-card", (0, $de53a9e075e12450$exports.BmwCard));
-customElements.define("bmw-card-editor", (0, $62ce92ffd2eddd19$exports.BmwCardEditor));
+customElements.define("bmw-card", (0, $de53a9e075e12450$export$4bea8ebf3f6f8075));
+customElements.define("bmw-card-editor", (0, $62ce92ffd2eddd19$export$b4a0c96d79c32b81));
 window.customCards = window.customCards || [];
 window.customCards.push({
     type: "bmw-card",
