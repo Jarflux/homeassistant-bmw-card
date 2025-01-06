@@ -1,4 +1,4 @@
-class BmwCardEditor extends LitElement {
+export class BmwCardEditor extends LitElement {
     setConfig(config) {
         this._config = config;
     }
