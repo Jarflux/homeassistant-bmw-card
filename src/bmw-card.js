@@ -1,85 +1,50 @@
-import { html, LitElement, nothing } from 'lit';
-import styles from './bmw-card.styles';
+class BmwCard extends HTMLElement {
+    // Whenever the state changes, a new `hass` object is set. Use this to
+    // update your content.
+    set hass(hass) {
+        // Initialize the content if it's not there yet.
+        if (!this.content) {
+            this.innerHTML = `
+        <ha-card header="Example-card">
+          <div class="card-content"></div>
+        </ha-card>
+      `;
+            this.content = this.querySelector("div");
+        }
 
-class BmwCard extends LitElement {
-    _hass;
+        const entityId = this.config.entity;
+        const state = hass.states[entityId];
+        const stateStr = state ? state.state : "unavailable";
 
-    static get properties() {
-        return {
-            _header: { state: true },
-            _entity: { state: true },
-            _name: { state: true },
-            _state: { state: true },
-            _status: { state: true }
-        };
+        this.content.innerHTML = `
+      The state of ${entityId} is ${stateStr}!
+      <br><br>
+      <img src="http://via.placeholder.com/350x150">
+    `;
     }
 
     setConfig(config) {
-        this._header = config.header === "" ? nothing : config.header;
-        this._entity = config.entity;
-        // call set hass() to immediately adjust to a changed entity
-        // while editing the entity in the card editor
-        if (this._hass) {
-            this.hass = this._hass
+        if (!config.entity) {
+            throw new Error("You need to define an entity");
         }
-    }
-
-    set hass(hass) {
-        this._hass = hass;
-        this._state = hass.states[this._entity];
-        if (this._state) {
-            this._status = this._state.state;
-            let fn = this._state.attributes.friendly_name;
-            this._name = fn ? fn : this._entity;
-        }
-    }
-
-    static styles = styles;
-
-    render() {
-        console.log("RENDER");
-        let content;
-        if (!this._state) {
-            content = html`
-                <p class="error">
-                    ${this._entity} is unavailable.
-                </p>
-            `;
-        } else {
-            content = html`
-                <dl class="dl">
-                    <dt class="dt">${this._name}</dt>
-                    <dd class="dd" @click="${this.doToggle}">
-                        <span class="toggle ${this._status}">
-                            <span class="button"></span>
-                        </span>
-                        <span class="value">${this._status}</span>
-                    </dd>
-                </dl>
-            `;
-        }
-        return html`
-            <ha-card header="${this._header}">
-                <div class="card-content">
-                    ${content}
-                </div>
-            </ha-card>
-        `;
-    }
-
-    doToggle(event) {
-        // Click Action
+        this.config = config;
     }
 
     static getConfigElement() {
         return document.createElement("bmw-card-editor");
     }
 
-    static getStubConfig() {
-        return {
-            entity: "input_boolean.tcl"
-        }
+    getCardSize() {
+        return 3;
     }
-}
 
-customElements.define("bwm-card", BmwCard);
+    getLayoutOptions() {
+        return {
+            grid_rows: 3,
+            grid_columns: 2,
+            grid_min_rows: 3,
+            grid_max_rows: 3,
+        };
+    }
+
+}
