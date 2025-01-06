@@ -1,32 +1,35 @@
 {
-  "name": "homeassistant-bmw-card",
-  "version": "1.0.0",
-  "description": "",
-  "main": "bmw-card.js",
+  "name": "bwm-card",
+  "version": "0.0.1",
+  "description": "Homeassistant Card for BMW cars via Connected Drive.",
+  "keywords": [
+    "home-assistant",
+    "homeassistant",
+    "hass",
+    "automation",
+    "lovelace",
+    "custom-cards",
+    "BMW",
+    "electric car"
+  ],
+  "source": "./src/index.js",
+  "module": "./dist/bmw-card.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/Jarflux/homeassistant-bmw-card.git"
   },
   "private": true,
-  "source": "src/index.ts",
-  "module": "dist/card.js",
-  "targets": {
-    "module": {
-      "includeNodeModules": true
-    }
-  },
+  "author": "Ben Oeyen <ben.oeyen@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "watch": "parcel watch",
     "build": "parcel build"
   },
+  "dependencies": {
+    "lit": "^2.7.4"
+  },
   "devDependencies": {
     "@parcel/transformer-inline-string": "^2.8.3",
     "parcel": "^2.8.3"
-  },
-  "dependencies": {
-    "@swc/helpers": "^0.5.15",
-    "custom-card-helpers": "^1.9.0",
-    "home-assistant-js-websocket": "^8.0.1",
-    "lit": "^2.7.4"
   }
 }
