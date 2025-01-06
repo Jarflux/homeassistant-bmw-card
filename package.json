@@ -1,7 +1,10 @@
 {
   "name": "bwm-card",
+  "author": "Ben Oeyen <ben.oeyen@gmail.com>",
+  "license": "MIT",
   "version": "0.0.1",
   "description": "Homeassistant Card for BMW cars via Connected Drive.",
+  "private": true,
   "keywords": [
     "home-assistant",
     "homeassistant",
@@ -12,24 +15,26 @@
     "BMW",
     "electric car"
   ],
-  "source": "./src/index.js",
-  "module": "./dist/bmw-card.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/Jarflux/homeassistant-bmw-card.git"
   },
-  "private": true,
-  "author": "Ben Oeyen <ben.oeyen@gmail.com>",
-  "license": "MIT",
+  "source": "./src/index.js",
+  "module": "./dist/card.js",
+  "targets": {
+    "module": {
+      "includeNodeModules": true
+    }
+  },
   "scripts": {
     "watch": "parcel watch",
     "build": "parcel build"
   },
-  "dependencies": {
-    "lit": "^2.7.4"
-  },
   "devDependencies": {
     "@parcel/transformer-inline-string": "^2.8.3",
     "parcel": "^2.8.3"
+  },
+  "dependencies": {
+    "lit": "^2.7.4"
   }
 }

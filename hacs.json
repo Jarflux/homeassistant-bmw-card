@@ -1,6 +1,6 @@
 {
   "name": "BMW Card",
   "render_readme": true,
-  "filename": "bmw-card.js",
+  "filename": "card.js",
   "content_in_root": false
 }
