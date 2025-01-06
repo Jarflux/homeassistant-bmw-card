@@ -1,50 +1,92 @@
-export class BmwCard extends HTMLElement {
-    // Whenever the state changes, a new `hass` object is set. Use this to
-    // update your content.
-    set hass(hass) {
-        // Initialize the content if it's not there yet.
-        if (!this.content) {
-            this.innerHTML = `
-        <ha-card header="Example-card">
-          <div class="card-content"></div>
-        </ha-card>
-      `;
-            this.content = this.querySelector("div");
-        }
+import { html, LitElement, nothing } from 'lit';
+import styles from './bmw-card.styles';
 
-        const entityId = this.config.entity;
-        const state = hass.states[entityId];
-        const stateStr = state ? state.state : "unavailable";
+export class BmwCard extends LitElement {
+    // private property
+    _hass;
 
-        this.content.innerHTML = `
-      The state of ${entityId} is ${stateStr}!
-      <br><br>
-      <img src="http://via.placeholder.com/350x150">
-    `;
+    // internal reactive states
+    static get properties() {
+        return {
+            _header: { state: true },
+            _entity: { state: true },
+            _name: { state: true },
+            _state: { state: true },
+            _status: { state: true }
+        };
     }
 
+    // lifecycle interface
     setConfig(config) {
-        if (!config.entity) {
-            throw new Error("You need to define an entity");
+        this._header = config.header === "" ? nothing : config.header;
+        this._entity = config.entity;
+        // call set hass() to immediately adjust to a changed entity
+        // while editing the entity in the card editor
+        if (this._hass) {
+            this.hass = this._hass
         }
-        this.config = config;
     }
 
+    set hass(hass) {
+        this._hass = hass;
+        this._state = hass.states[this._entity];
+        if (this._state) {
+            this._status = this._state.state;
+            let fn = this._state.attributes.friendly_name;
+            this._name = fn ? fn : this._entity;
+        }
+    }
+
+    // declarative part
+    static styles = styles;
+
+    render() {
+        console.log("RENDER");
+        let content;
+        if (!this._state) {
+            content = html`
+                <p class="error">
+                    ${this._entity} is unavailable.
+                </p>
+            `;
+        } else {
+            content = html`
+                <dl class="dl">
+                    <dt class="dt">${this._name}</dt>
+                    <dd class="dd" @click="${this.doToggle}">
+                        <span class="toggle ${this._status}">
+                            <span class="button"></span>
+                        </span>
+                        <span class="value">${this._status}</span>
+                    </dd>
+                </dl>
+            `;
+        }
+        return html`
+            <ha-card header="${this._header}">
+                <div class="card-content">
+                    ${content}
+                </div>
+            </ha-card>
+        `;
+    }
+
+    // event handling
+    doToggle(event) {
+        this._hass.callService("input_boolean", "toggle", {
+            entity_id: this._entity
+        });
+    }
+
+    // card configuration
     static getConfigElement() {
         return document.createElement("bmw-card-editor");
     }
 
-    getCardSize() {
-        return 3;
-    }
-
-    getLayoutOptions() {
+    static getStubConfig() {
         return {
-            grid_rows: 3,
-            grid_columns: 2,
-            grid_min_rows: 3,
-            grid_max_rows: 3,
+            entity: "input_boolean.tcl",
+            header: "",
         };
     }
-
 }

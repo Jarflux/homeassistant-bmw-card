@@ -1,8 +1,8 @@
 import { BmwCard } from "./bmw-card";
 import { BmwCardEditor } from "./bmw-card-editor";
 
-customElements.define("bwm-card", BmwCard);
 customElements.define("bmw-card-editor", BmwCardEditor);
+customElements.define("bwm-card", BmwCard);
 
 window.customCards = window.customCards || [];
 window.customCards.push({
