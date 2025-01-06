@@ -1,6 +1,7 @@
 import { css, html, LitElement } from 'lit';
 
 export class BmwCardEditor extends LitElement {
+
     static get properties() {
         return {
             // hass: {},
@@ -60,3 +61,12 @@ export class BmwCardEditor extends LitElement {
         this.dispatchEvent(messageEvent);
     }
 }
+
+customElements.define("bmw-card-editor", BmwCardEditor);
+
+window.customCards = window.customCards || [];
+window.customCards.push({
+    type: "bmw-card",
+    name: "BMW Card",
+    description: "BMW Card to show car data from Connected Drive integration.",
+});

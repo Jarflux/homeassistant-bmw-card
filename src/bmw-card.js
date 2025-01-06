@@ -2,10 +2,8 @@ import { html, LitElement, nothing } from 'lit';
 import styles from './bmw-card.styles';
 
 export class BmwCard extends LitElement {
-    // private property
     _hass;
 
-    // internal reactive states
     static get properties() {
         return {
             _header: { state: true },
@@ -16,7 +14,6 @@ export class BmwCard extends LitElement {
         };
     }
 
-    // lifecycle interface
     setConfig(config) {
         this._header = config.header === "" ? nothing : config.header;
         this._entity = config.entity;
@@ -37,7 +34,6 @@ export class BmwCard extends LitElement {
         }
     }
 
-    // declarative part
     static styles = styles;
 
     render() {
@@ -71,22 +67,19 @@ export class BmwCard extends LitElement {
         `;
     }
 
-    // event handling
     doToggle(event) {
-        this._hass.callService("input_boolean", "toggle", {
-            entity_id: this._entity
-        });
+        // Click Action
     }
 
-    // card configuration
     static getConfigElement() {
         return document.createElement("bmw-card-editor");
     }
 
     static getStubConfig() {
         return {
-            entity: "input_boolean.tcl",
-            header: "",
-        };
+            entity: "input_boolean.tcl"
+        }
     }
 }
+
+customElements.define("bwm-card", BmwCard);
