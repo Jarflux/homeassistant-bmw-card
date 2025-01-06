@@ -1213,50 +1213,17 @@ class $872a59d13853830e$export$4bea8ebf3f6f8075 extends (0, $ab210b2da7b39b9d$ex
     }
     static{
         this.styles = (0, $def2de46b9306e8a$export$dbf350e5966cf602)`
-    .table {
-      display: table;
-    }
-    .row {
-      display: table-row;
-    }
-    .cell {
-      display: table-cell;
-      padding: 0.5em;
+    .div {
+      background-color: dodgerblue;
     }
   `;
     }
     render() {
         return (0, $f58f44579a4747ac$export$c0bb0b647f701bb5)`
-            <form class="table">
-                <div class="row">
-                    <label class="label cell" for="header">Header:</label>
-                    <input
-                        @change="${this.handleChangedEvent}"
-                        class="value cell" id="header" value="${this._config.header}"></input>
-                </div>
-                <div class="row">
-                    <label class="label cell" for="entity">Entity:</label>
-                    <input
-                        @change="${this.handleChangedEvent}"
-                        class="value cell" id="entity" value="${this._config.entity}"></input>
-                </div>
-            </form>
+            <div class="bmw-card">
+                HELLO WORLD
+            </div>
         `;
-    }
-    handleChangedEvent(changedEvent) {
-        const target = changedEvent.target;
-        // this._config is readonly, copy needed
-        const newConfig = Object.assign({}, this._config);
-        if (target.id == "header") newConfig.header = target.value;
-        else if (target.id == "entity") newConfig.entity = target.value;
-        const messageEvent = new CustomEvent("config-changed", {
-            detail: {
-                config: newConfig
-            },
-            bubbles: true,
-            composed: true
-        });
-        this.dispatchEvent(messageEvent);
     }
 }
 (0, $24c52f343453d62d$export$29e00dfd3077644b)([
@@ -1264,68 +1231,8 @@ class $872a59d13853830e$export$4bea8ebf3f6f8075 extends (0, $ab210b2da7b39b9d$ex
 ], $872a59d13853830e$export$4bea8ebf3f6f8075.prototype, "_config", void 0);
 
 
-
-
-
-class $d067581fc0d59830$export$b4a0c96d79c32b81 extends (0, $ab210b2da7b39b9d$export$3f2f9f5909897157) {
-    setConfig(config) {
-        this._config = config;
-    }
-    static{
-        this.styles = (0, $def2de46b9306e8a$export$dbf350e5966cf602)`
-    .table {
-      display: table;
-    }
-    .row {
-      display: table-row;
-    }
-    .cell {
-      display: table-cell;
-      padding: 0.5em;
-    }
-  `;
-    }
-    render() {
-        return (0, $f58f44579a4747ac$export$c0bb0b647f701bb5)`
-            <form class="table">
-                <div class="row">
-                    <label class="label cell" for="header">Header:</label>
-                    <input
-                        @change="${this.handleChangedEvent}"
-                        class="value cell" id="header" value="${this._config.header}"></input>
-                </div>
-                <div class="row">
-                    <label class="label cell" for="entity">Entity:</label>
-                    <input
-                        @change="${this.handleChangedEvent}"
-                        class="value cell" id="entity" value="${this._config.entity}"></input>
-                </div>
-            </form>
-        `;
-    }
-    handleChangedEvent(changedEvent) {
-        const target = changedEvent.target;
-        // this._config is readonly, copy needed
-        const newConfig = Object.assign({}, this._config);
-        if (target.id == "header") newConfig.header = target.value;
-        else if (target.id == "entity") newConfig.entity = target.value;
-        const messageEvent = new CustomEvent("config-changed", {
-            detail: {
-                config: newConfig
-            },
-            bubbles: true,
-            composed: true
-        });
-        this.dispatchEvent(messageEvent);
-    }
-}
-(0, $24c52f343453d62d$export$29e00dfd3077644b)([
-    (0, $04c21ea1ce1f6057$export$ca000e230c0caa3e)()
-], $d067581fc0d59830$export$b4a0c96d79c32b81.prototype, "_config", void 0);
-
-
 customElements.define("bmw-card", (0, $872a59d13853830e$export$4bea8ebf3f6f8075));
-customElements.define("bmw-card-editor", (0, $d067581fc0d59830$export$b4a0c96d79c32b81));
+//customElements.define("bmw-card-editor", BmwCardEditor);
 window.customCards = window.customCards || [];
 window.customCards.push({
     type: "bmw-card",

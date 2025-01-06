@@ -8,7 +8,7 @@ declare global {
 }
 
 customElements.define("bmw-card", BmwCard);
-customElements.define("bmw-card-editor", BmwCardEditor);
+//customElements.define("bmw-card-editor", BmwCardEditor);
 
 window.customCards = window.customCards || [];
 window.customCards.push({
