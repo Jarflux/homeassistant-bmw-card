@@ -1,6 +1,6 @@
 import { css, html, LitElement } from 'lit';
 
-export class BmwCardEditor extends LitElement {
+class BmwCardEditor extends LitElement {
 
     static get properties() {
         return {

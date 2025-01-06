@@ -1,7 +1,7 @@
 import { html, LitElement, nothing } from 'lit';
 import styles from './bmw-card.styles';
 
-export class BmwCard extends LitElement {
+class BmwCard extends LitElement {
     _hass;
 
     static get properties() {
