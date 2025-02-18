@@ -1,0 +1,81 @@
+type: picture-elements
+style: |
+  ha-card {
+    border-bottom: 0px;
+    padding:50px 20px 190px 20px;
+    background: linear-gradient(180deg, rgba(58,96,195,1) 10%, var(--card-background-color) 100%);
+  }
+elements:
+  - type: image
+    image: /local/images/bmw-logo.svg
+    style:
+      width: 10%
+      top: "-7%"
+      left: 4%
+  - type: icon
+    entity: binary_sensor.i4_edrive40_charging_status
+    icon: mdi:lightning-bolt
+    style:
+      top: 120%
+      left: 20%
+  - type: state-label
+    entity: binary_sensor.i4_edrive40_charging_status
+    style:
+      top: 135%
+      left: 20%
+  - type: icon
+    entity: sensor.i4_edrive40_remaining_battery_percent
+    icon: mdi:battery-high
+    style:
+      top: 120%
+      left: 50%
+  - type: state-label
+    entity: sensor.i4_edrive40_remaining_battery_percent
+    style:
+      top: 135%
+      left: 50%
+  - type: icon
+    entity: sensor.i4_edrive40_remaining_range_total
+    icon: mdi:map-marker-distance
+    style:
+      top: 120%
+      left: 80%
+  - type: state-label
+    entity: sensor.i4_edrive40_remaining_range_total
+    style:
+      top: 135%
+      left: 80%
+  - type: icon
+    entity: binary_sensor.i4_edrive40_check_control_messages
+    icon: mdi:car-tire-alert
+    style:
+      top: 155%
+      left: 20%
+  - type: state-label
+    entity: binary_sensor.i4_edrive40_check_control_messages
+    style:
+      top: 170%
+      left: 20%
+  - type: icon
+    entity: binary_sensor.i4_edrive40_condition_based_services
+    icon: mdi:wrench
+    style:
+      top: 155%
+      left: 50%
+  - type: state-label
+    entity: binary_sensor.i4_edrive40_condition_based_services
+    style:
+      top: 170%
+      left: 50%
+  - type: icon
+    entity: sensor.i4_edrive40_mileage
+    icon: mdi:speedometer
+    style:
+      top: 155%
+      left: 80%
+  - type: state-label
+    entity: sensor.i4_edrive40_mileage
+    style:
+      top: 170%
+      left: 80%
+image: /local/images/bmwi4.webp
